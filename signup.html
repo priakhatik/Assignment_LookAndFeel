@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sonic Vibes | Sign Up</title>
+  <style>
+    body {
+      background: #001f3f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #003366;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 2em;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #ffef7e;
+    }
+    .signup-container {
+      background: #032b4d;
+      border-radius: 18px;
+      box-shadow: 0 0 30px #0088cc55;
+      width: 95vw;
+      max-width: 530px;
+      margin: 3em auto 0 auto;
+      padding: 2em 2.5em 2em 2.5em;
+      text-align: center;
+    }
+    .signup-container h1 {
+      font-family: 'Times New Roman', serif;
+      font-size: 2.2em;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5em;
+      color: #fff;
+    }
+    .signup-container label {
+      float: left;
+      margin-bottom: 0.3em;
+      margin-left: 0.3em;
+      font-size: 1em;
+    }
+    .signup-container form {
+      margin-top: 1em;
+      text-align: left;
+    }
+    .input-group {
+      margin-bottom: 1.3em;
+    }
+    input[type="email"], select, input[type="tel"] {
+      width: 100%;
+      padding: 0.9em;
+      border-radius: 7px;
+      background: #001f3f;
+      color: #fff;
+      border: 2px solid #00ccff;
+      font-size: 1em;
+      margin-top: 0.25em;
+      outline: none;
+      transition: border 0.2s;
+      box-sizing: border-box;
+    }
+    input[type="email"]:focus, select:focus, input[type="tel"]:focus {
+      border: 2px solid #fff800;
+    }
+    .checkboxes {
+      margin-bottom: 1.3em;
+      font-size: 0.98em;
+    }
+    .checkboxes label {
+      float: none;
+      display: block;
+      margin-bottom: 0.5em;
+      margin-left: 1.2em;
+    }
+    .signup-btn {
+      width: 100%;
+      background: linear-gradient(90deg,#00ccff,#003366 90%);
+      color: #fff;
+      font-size: 1.3em;
+      padding: 0.7em 0;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 0.6em;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ccff44;
+      transition: background 0.2s, color 0.2s;
+    }
+    .signup-btn:hover {
+      background: linear-gradient(90deg,#00c39e,#003366 80%);
+      color: #ffef7e;
+    }
+    .success-message {
+      color: #3ffc7e;
+      margin-top: 1.4em;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.08em;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .signup-container {
+        padding: 1em 0.5em;
+        width: 99vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>The Sonic Vibes</strong></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="signup.html" class="active">Sign Up</a>
+      <a href="analytics.html">Analytics</a>
+    </div>
+  </nav>
+  <section class="signup-container">
+    <h1>MAILER</h1>
+    <p style="font-size:1.09em;margin-bottom:1.5em;">
+      If you would like to keep up to date with all the latest Sonic Vibes news, gigs, releases and competitions, sign up to our mailing list and we will be in touch.
+    </p>
+    <form id="signupForm" autocomplete="off">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+      </div>
+      <div class="input-group">
+        <label for="country">Country</label>
+        <select id="country" name="country" required>
+          <option value="" selected disabled>Select your Country</option>
+          <option>United States</option>
+          <option>India</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Australia</option>
+          <option>Germany</option>
+          <option>France</option>
+          <option>Japan</option>
+          <option>Brazil</option>
+          <option>South Africa</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" pattern="\d{10}" maxlength="10" inputmode="numeric"
+               placeholder="Enter your 10-digit phone number" required
+               title="Please enter exactly 10 digits" />
+      </div>
+      <div class="checkboxes">
+        <label><input type="checkbox" name="updates" /> I want Sonic Vibes updates via email and SMS.</label>
+        <label>
+          <input type="checkbox" name="consent" />
+          By providing my phone number, I agree to receive messages via SMS or WhatsApp (opt out anytime).
+        </label>
+      </div>
+      <button class="signup-btn" type="submit">SIGN UP</button>
+      <div id="success" class="success-message">Sign up successful!</div>
+    </form>
+  </section>
+  <script>
+    // Restrict phone to 10 digits only (numeric input)
+    const phone = document.getElementById('phone');
+    phone.addEventListener('input', function(e) {
+      this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    // Show success message and clear form
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (phone.value.length !== 10) {
+        alert('Phone number must be exactly 10 digits.');
+        phone.focus();
+        return;
+      }
+      document.getElementById('success').style.display = 'block';
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('success').style.display = 'none';
+      }, 3500);
+    });
+  </script>
+</body>
+</html>

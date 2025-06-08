@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Me | The Sonic Vibes</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    body {
+      background: #082744;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav {
+      background-color: #0b3760;
+      display: flex;
+      justify-content: space-between;
+      padding: 1em 2em;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 2em;
+      font-weight: bold;
+    }
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2.5em;
+      margin-bottom: 2.5em;
+    }
+    .about-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00ccff;
+      box-shadow: 0 0 10px #00ccff88;
+      margin-bottom: 1.2em;
+    }
+    .about-section h2 {
+      color: #00ccff;
+      margin-top: 0;
+      margin-bottom: 1em;
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .about-section p {
+      max-width: 520px;
+      text-align: center;
+      font-size: 1.08em;
+      line-height: 1.55;
+      color: #e0f3ff;
+      margin-bottom: 2.2em;
+    }
+    .skills-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #0b3760;
+      padding: 2em 0 2.5em 0;
+      margin-bottom: 0;
+    }
+    .skills-section h3 {
+      color: #00ccff;
+      margin-bottom: 1.2em;
+      letter-spacing: 0.5px;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+      margin-bottom: 2em;
+      padding: 0;
+      list-style: none;
+    }
+    .skills-list li {
+      background: #184363;
+      border-radius: 9px;
+      padding: 0.5em 1.3em;
+      color: #c6f6ff;
+      font-weight: 500;
+      font-size: 1em;
+      box-shadow: 0 0 7px #00ccff1a;
+      transition: background 0.17s;
+    }
+    .github-link {
+      display: inline-block;
+      margin: 0 auto;
+      color: #00ccff;
+      background: #184363;
+      padding: 0.62em 2em;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.08em;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 8px #00ccff44;
+      border: none;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    }
+    .github-link:hover {
+      background: #00ccff;
+      color: #184363;
+      box-shadow: 0 0 16px #00ccff88;
+      text-decoration: underline;
+    }
+    footer {
+      background: #11325a;
+      text-align: center;
+      color: #c0eaff;
+      padding: 1.3em;
+      font-size: 1em;
+      margin-top: 3em;
+      letter-spacing: 0.2px;
+    }
+    @media (max-width: 600px) {
+      .about-section p {
+        font-size: 0.97em;
+        max-width: 94vw;
+      }
+      .skills-section {
+        padding: 1.2em 0 1.2em 0;
+      }
+      .skills-list li {
+        padding: 0.5em 0.7em;
+        font-size: 0.97em;
+      }
+      .github-link {
+        padding: 0.62em 1.2em;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>The Sonic Vibes</strong></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="analytics.html">Analytics</a>
+    </div>
+  </nav>
+
+  <section class="about-section">
+    <img src="img/me.png" alt="Developer Photo" class="about-photo" />
+    <h2>About Me</h2>
+    <p>
+      I am a graduate student at the University of South Florida, passionate about front-end web development and digital creativity. With a strong foundation in HTML, CSS, and JavaScript, I enjoy building engaging, user-friendly websites that combine modern design principles with seamless functionality. My academic journey at USF has taught me to approach every project with curiosity, attention to detail, and a desire to create meaningful digital experiences. I thrive on solving challenges, collaborating with others, and constantly learning new technologies to keep my skills sharp. Whether I’m developing a music band website or experimenting with interactive layouts, my goal is always to deliver a polished and professional result. Beyond coding, I’m inspired by music, teamwork, and the endless possibilities that technology brings to creative problem-solving.
+    </p>
+  </section>
+
+  <section class="skills-section">
+    <h3>Technical Skills</h3>
+    <ul class="skills-list">
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>JavaScript (Basics)</li>
+      <li>Responsive Web Design</li>
+      <li>UI/UX Principles</li>
+      <li>Visual Studio Code</li>
+    </ul>
+    <a
+      class="github-link"
+      href="https://github.com/priakhatik/"
+      target="_blank"
+      rel="noopener"
+    >
+      View my GitHub Dashboard
+    </a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 The Sonic Vibes. Designed with love and neon lights.</p>
+  </footer>
+</body>
+</html>

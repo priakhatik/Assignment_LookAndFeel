@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Analytics | The Sonic Vibes</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Chart.js + DataLabels CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+  <nav>
+    <div><strong>The Sonic Vibes</strong></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="analytics.html" class="active">Analytics</a>
+    </div>
+  </nav>
+
+  <main class="analytics-container">
+    <h1>Band Analytics Dashboard</h1>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number">8.4M</div>
+        <div class="stat-label">Monthly Listeners</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">152</div>
+        <div class="stat-label">Countries Reached</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Tour Sell-out Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">21</div>
+        <div class="stat-label">Awards Won</div>
+      </div>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h2><span class="chart-icon"></span> Monthly Listeners (2025)</h2>
+        <canvas id="listenersChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2><span class="chart-icon"></span> Top Songs (Streams in Millions)</h2>
+        <canvas id="songsChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2><span class="chart-icon"></span> Audience by Age Group</h2>
+        <canvas id="ageChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2><span class="chart-icon"></span> Listeners by Device</h2>
+        <canvas id="deviceChart"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Sonic Vibes. Designed with love and neon lights.</p>
+  </footer>
+
+  <!-- Charts Script (must be after canvas elements) -->
+  <script>
+    // Chart 1: Monthly Listeners
+    new Chart(document.getElementById('listenersChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
+        datasets: [{
+          label: 'Millions',
+          data: [6.2, 6.8, 7.1, 7.8, 8.0, 8.3, 8.4],
+          backgroundColor: '#00ccff',
+          borderRadius: 10
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { display: false },
+          datalabels: {
+            color: '#003366',
+            anchor: 'end',
+            align: 'top',
+            font: { weight: 'bold', size: 15 },
+            formatter: value => value
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { color: '#aaa', font: { weight: 'bold' } } },
+          x: { ticks: { color: '#aaa', font: { weight: 'bold' } } }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      },
+      plugins: [ChartDataLabels]
+    });
+
+    // Chart 2: Top Songs
+    new Chart(document.getElementById('songsChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Yellow','Viva La Vida','Paradise','Fix You','A Sky Full of Stars'],
+        datasets: [{
+          label: 'Streams (M)',
+          data: [312, 290, 275, 250, 205],
+          backgroundColor: ['#00E6A7', '#FFD600', '#FF6F61', '#8888FF', '#33C3FF'],
+          borderRadius: 10
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { display: false },
+          datalabels: {
+            color: '#003366',
+            anchor: 'end',
+            align: 'top',
+            font: { weight: 'bold', size: 15 },
+            formatter: value => value
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { color: '#aaa', font: { weight: 'bold' } } },
+          x: { ticks: { color: '#aaa', font: { weight: 'bold' } } }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      },
+      plugins: [ChartDataLabels]
+    });
+
+    // Chart 3: Audience by Age Group (Pie)
+    new Chart(document.getElementById('ageChart'), {
+      type: 'pie',
+      data: {
+        labels: ['13-17', '18-24', '25-34', '35-44', '45+'],
+        datasets: [{
+          label: 'Audience %',
+          data: [12, 33, 28, 17, 10],
+          backgroundColor: [
+            '#FFD600', '#00E6A7', '#8888FF', '#FF6F61', '#33C3FF'
+          ]
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: '#003366', font: { weight: 'bold' } } },
+          datalabels: {
+            color: '#003366',
+            font: { weight: 'bold', size: 15 },
+            formatter: (value, ctx) => value + '%'
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      },
+      plugins: [ChartDataLabels]
+    });
+
+    // Chart 4: Listeners by Device (Doughnut)
+    new Chart(document.getElementById('deviceChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Mobile','Desktop','Tablet','Smart Speaker','Other'],
+        datasets: [{
+          label: 'Device %',
+          data: [60, 22, 8, 7, 3],
+          backgroundColor: [
+            '#00ccff', '#8888FF', '#FFD600', '#FF6F61', '#cccccc'
+          ]
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: '#003366', font: { weight: 'bold' } } },
+          datalabels: {
+            color: '#003366',
+            font: { weight: 'bold', size: 15 },
+            formatter: (value, ctx) => value + '%'
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      },
+      plugins: [ChartDataLabels]
+    });
+  </script>
+</body>
+</html>
