@@ -28,7 +28,7 @@ nav a {
   box-sizing: border-box;
 }
 
-/* HERO: The Sonic Vibes */
+/* HERO: Meet Coldplay */
 section.hero {
   padding: 2em 0 1em 0;
   text-align: center;
@@ -230,137 +230,133 @@ footer {
   color: #001f3f;
 }
 
-/* SIGNUP PAGE STYLES */
+/* === JOIN VIBE CRUD STYLES (override, put at the end of your CSS) === */
 .signup-section {
-  max-width: 850px;
-  margin: 2em auto;
-  padding: 2em 1em 3em 1em;
-  background: rgba(0, 31, 63, 0.8);
-  border-radius: 12px;
-  box-shadow: 0 0 30px #00ccff44;
-  text-align: center;
+  max-width: 440px !important;
+  margin: 3em auto 2em auto !important;
+  padding: 2.2em 1.3em 2em 1.3em !important;
+  background: rgba(0, 31, 63, 0.93) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 0 32px #00ccff30 !important;
+  text-align: left !important;
 }
-
 .signup-section h1 {
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.12em;
-  color: #fff;
-  font-size: 2.5em;
-  margin-bottom: 0.6em;
+  text-align: center;
+  color: #00ccff;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1.1em;
 }
-
-.signup-intro {
-  font-size: 1.1em;
-  margin-bottom: 2em;
-  color: #e0e0e0;
-}
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2em;
-  width: 90%;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.signup-form input[type="email"],
-.signup-form input[type="tel"],
-.signup-form select {
-  background: transparent;
-  border: 2px solid #00ccff;
-  border-radius: 6px;
-  padding: 1.2em;
-  color: #fff;
-  font-size: 1.1em;
-  outline: none;
+.signup-section label {
+  font-weight: 600;
   margin-bottom: 0.3em;
-  transition: border 0.3s;
 }
-.signup-form input:focus,
-.signup-form select:focus {
+.signup-section input,
+.signup-section select,
+.signup-section button {
+  width: 100% !important;
+  box-sizing: border-box;
+  margin-bottom: 1.1em;
+  padding: 0.9em;
+  border-radius: 8px;
+  font-size: 1em;
+  border: 2px solid #00ccff;
+  background: #001f3f;
+  color: #fff;
+  outline: none;
+  transition: border 0.2s;
+}
+.signup-section input:focus,
+.signup-section select:focus {
   border-color: #ffef7e;
 }
-.signup-form select {
+.signup-section button {
+  background: linear-gradient(90deg, #00ccff, #003366 90%);
   color: #fff;
-  background: #002244;
-}
-
-.signup-checkboxes {
-  text-align: left;
-  font-size: 0.97em;
-  color: #d3d3d3;
-}
-.signup-checkboxes label {
-  display: block;
-  margin-bottom: 0.3em;
+  font-size: 1.12em;
+  font-weight: bold;
+  border: none;
   cursor: pointer;
+  box-shadow: 0 0 10px #00ccff44;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 0.5em;
 }
-.signup-checkboxes input[type="checkbox"] {
-  margin-right: 0.5em;
+.signup-section button:hover {
+  background: linear-gradient(90deg, #00c39e, #003366 80%);
+  color: #ffef7e;
 }
 
-.signup-form button {
+.vibe-list-section {
+  background: #032b4d;
+  margin: 2em auto;
+  max-width: 520px;
+  padding: 1.2em 1.5em 1.7em 1.5em;
+  border-radius: 14px;
+  box-shadow: 0 0 18px #00ccff32;
+  color: #fff;
+}
+.vibe-list-section h2 {
+  text-align: center;
+  margin-bottom: 1em;
+  color: #00ccff;
+  font-size: 1.15em;
+}
+.vibe-item {
+  background: #001f3f;
+  border: 1px solid #00ccff;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  padding: 1em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.vibe-info {
+  flex: 1;
+  min-width: 140px;
+}
+.vibe-actions button {
+  margin-left: 0.7em;
+  padding: 0.3em 1.1em;
+  border-radius: 6px;
+  border: none;
   background: #003366;
   color: #fff;
-  font-size: 1.15em;
-  font-weight: bold;
-  padding: 0.9em 0;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 0 12px #00ccff88;
+  font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.08em;
-  margin-top: 0.6em;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s;
+  font-size: 0.98em;
 }
-.signup-form button:hover {
+.vibe-actions button.edit {
   background: #00ccff;
   color: #001f3f;
 }
+.vibe-actions button.delete {
+  background: #ff3b3b;
+  color: #fff;
+}
+.vibe-actions button.edit:hover {
+  background: #01d8ff;
+}
+.vibe-actions button.delete:hover {
+  background: #b90000;
+}
 
+/* Responsive for Join Vibe only */
 @media (max-width: 700px) {
-  .signup-section {
-    max-width: 98vw;
-    padding: 1em 0.3em 2em 0.3em;
+  .signup-section,
+  .vibe-list-section {
+    max-width: 97vw !important;
+    padding: 1.1em 0.4em 1.4em 0.4em !important;
   }
-  .signup-form {
-    width: 99vw;
-    max-width: 100vw;
+  .vibe-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
-nav a.active {
-  color: #ffef7e;
-  text-decoration: underline;
-}
-
-body {
-  background-color: #062643;
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* NAVBAR */
-nav {
-  background-color: #003366;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em 2em;
-}
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 2em;
-  font-weight: bold;
-  font-size: 1.06em;
-  transition: color 0.2s;
-}
-nav a.active,
-nav a:hover {
-  color: #00ccff;
+  .vibe-actions {
+    margin-top: 0.6em;
+  }
 }
 
 /* DASHBOARD LAYOUT */
