@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Join the Vibe | The Sonic Vibes</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    /* Just for this page: */
+    .signup-section {
+      max-width: 440px;
+      margin: 3em auto 2em auto;
+      padding: 2.5em 1.7em 2em 1.7em;
+      background: rgba(0, 31, 63, 0.94);
+      border-radius: 14px;
+      box-shadow: 0 0 32px #00ccff38;
+      text-align: left;
+    }
+    .signup-section h1 {
+      text-align: center;
+      color: #00ccff;
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 1.3em;
+    }
+    .signup-section label {
+      font-weight: 600;
+      margin-bottom: 0.3em;
+    }
+    .signup-section input,
+    .signup-section select,
+    .signup-section button {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 1.2em;
+    }
+    .signup-section button {
+      background: linear-gradient(90deg, #00ccff, #003366 90%);
+      color: #fff;
+      border: none;
+      font-size: 1.12em;
+      font-weight: bold;
+      padding: 0.8em 0;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ccff44;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 0.5em;
+    }
+    .signup-section button:hover {
+      background: linear-gradient(90deg, #00c39e, #003366 80%);
+      color: #ffef7e;
+    }
+    .vibe-list-section {
+      background: #032b4d;
+      margin: 2em auto;
+      max-width: 540px;
+      padding: 1.2em 1.5em 1.7em 1.5em;
+      border-radius: 16px;
+      box-shadow: 0 0 20px #00ccff44;
+      color: #fff;
+    }
+    .vibe-list-section h2 {
+      text-align: center;
+      margin-bottom: 1.1em;
+      color: #00ccff;
+      font-size: 1.25em;
+    }
+    .vibe-item {
+      background: #001f3f;
+      border: 1px solid #00ccff;
+      border-radius: 10px;
+      margin-bottom: 1em;
+      padding: 1em 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .vibe-info {
+      flex: 1;
+      min-width: 170px;
+    }
+    .vibe-actions button {
+      margin-left: 0.7em;
+      padding: 0.3em 1.1em;
+      border-radius: 6px;
+      border: none;
+      background: #003366;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.98em;
+    }
+    .vibe-actions button.edit {
+      background: #00ccff;
+      color: #001f3f;
+    }
+    .vibe-actions button.delete {
+      background: #ff3b3b;
+      color: #fff;
+    }
+    .vibe-actions button.edit:hover {
+      background: #01d8ff;
+    }
+    .vibe-actions button.delete:hover {
+      background: #b90000;
+    }
+    @media (max-width: 700px) {
+      .signup-section,
+      .vibe-list-section {
+        max-width: 97vw;
+        padding: 1.1em 0.4em 1.4em 0.4em;
+      }
+      .vibe-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .vibe-actions {
+        margin-top: 0.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>The Sonic Vibes</strong></div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="joinvibe.html" class="active">Join</a>
+      <a href="analytics.html">Analytics</a>
+    </div>
+  </nav>
+
+  <section class="signup-section">
+    <h1>Join the Vibe</h1>
+    <form id="vibeForm" autocomplete="off">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required placeholder="Enter your email" />
+
+      <label for="country">Country</label>
+      <select id="country" required>
+        <option value="" disabled selected>Select Country</option>
+        <option>United States</option>
+        <option>India</option>
+        <option>Canada</option>
+        <option>United Kingdom</option>
+        <option>Australia</option>
+        <option>Other</option>
+      </select>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" maxlength="10" required placeholder="10-digit number" />
+
+      <button type="submit">Submit</button>
+      <input type="hidden" id="editIndex" value="">
+      <div id="successMsg" style="color:#3ffc7e;text-align:center;margin-top:1em;display:none;">Successfully submitted!</div>
+    </form>
+  </section>
+
+  <section class="vibe-list-section">
+    <h2>Vibe Circle Members</h2>
+    <div id="vibeList"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 The Sonic Vibes. Designed with love and neon lights.
+  </footer>
+
+  <script>
+    // Elements
+    const form = document.getElementById('vibeForm');
+    const email = document.getElementById('email');
+    const country = document.getElementById('country');
+    const phone = document.getElementById('phone');
+    const editIndex = document.getElementById('editIndex');
+    const vibeListDiv = document.getElementById('vibeList');
+    const successMsg = document.getElementById('successMsg');
+
+    // Data
+    let vibeMembers = [];
+
+    // Restrict phone to 10 digits
+    phone.addEventListener('input', () => {
+      phone.value = phone.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    // Handle Create/Update
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      const entry = {
+        email: email.value.trim(),
+        country: country.value,
+        phone: phone.value.trim()
+      };
+      if (editIndex.value === "") {
+        // Create
+        vibeMembers.push(entry);
+        showSuccess("Member added!");
+      } else {
+        // Update
+        vibeMembers[+editIndex.value] = entry;
+        showSuccess("Member updated!");
+        editIndex.value = "";
+      }
+      form.reset();
+      renderVibeList();
+    };
+
+    // Read/Render
+    function renderVibeList() {
+      vibeListDiv.innerHTML = "";
+      if (vibeMembers.length === 0) {
+        vibeListDiv.innerHTML = "<p style='color:#ccc;text-align:center;'>No one is vibing yet. Be the first to join!</p>";
+      } else {
+        vibeMembers.forEach((vibe, idx) => {
+          const item = document.createElement('div');
+          item.className = "vibe-item";
+          item.innerHTML = `
+            <div class="vibe-info">
+              <div><strong>Email:</strong> ${vibe.email}</div>
+              <div><strong>Country:</strong> ${vibe.country}</div>
+              <div><strong>Phone:</strong> ${vibe.phone}</div>
+            </div>
+            <div class="vibe-actions">
+              <button class="edit" onclick="editVibe(${idx})">Edit</button>
+              <button class="delete" onclick="deleteVibe(${idx})">Delete</button>
+            </div>
+          `;
+          vibeListDiv.appendChild(item);
+        });
+      }
+    }
+    // Expose for inline handlers
+    window.editVibe = function(idx) {
+      const m = vibeMembers[idx];
+      email.value = m.email;
+      country.value = m.country;
+      phone.value = m.phone;
+      editIndex.value = idx;
+      email.focus();
+    };
+    window.deleteVibe = function(idx) {
+      if (confirm("Delete this member?")) {
+        vibeMembers.splice(idx, 1);
+        renderVibeList();
+      }
+    };
+    function showSuccess(msg) {
+      successMsg.innerText = msg;
+      successMsg.style.display = "block";
+      setTimeout(() => { successMsg.style.display = "none"; }, 1800);
+    }
+    // Initial render
+    renderVibeList();
+  </script>
+</body>
+</html>
